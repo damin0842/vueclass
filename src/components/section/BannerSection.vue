@@ -1,25 +1,47 @@
 <template>
-  <section id="bannerType" class="banner__wrap" :class="fonts">
+  <section id="bannerType" class="banner__wrap" :class="attr">
     <h2 class="blind">배너 영역</h2>
     <div class="banner__inner">
-      <h3 class="title">유튜버 찾아보기</h3>
+      <h3 class="title">
+        {{ titles[0].text }}
+      </h3>
       <p class="desc">
-        더 다양한 강의는 유튜브를 통해 제공하고 있습니다
-        <a href="https://www.youtube.com/" title="유튜브 페이지로 이동"
-          >https://www.youtube.com/</a
-        >
+        {{ titles[1].text }}
+        <a href="#">{{ titles[2].text }}</a>
       </p>
-      <span class="small">배너 유형01</span>
+      <span class="small">{{ titles[3].text }}</span>
     </div>
   </section>
 </template>
+
 <script>
 export default {
   props: {
-    fonts: String,
+    attr: String,
+    post: {
+      type: Object,
+      default: () => {
+        return {
+          id: 1,
+          title: "Love Yourself",
+        };
+      },
+    },
+  },
+
+  data: function () {
+    return {
+      titles: [
+        { text: "강렬한 색의 조화" },
+        { text: "더 많은 정보는 아래 링크를 참조해 주세요" },
+        { text: "youtube.com/c/Webstoryboy" },
+        { text: "한난대비" },
+      ],
+    };
   },
 };
 </script>
+
 <style>
 .banner__inner {
   background-image: url(../../assets/img/banner_bg01.jpg);
@@ -30,56 +52,84 @@ export default {
   padding: 120px 0;
   color: #fff;
 }
+
 .banner__inner .title {
   font-size: 50px;
   line-height: 1;
-  font-weight: bold;
-  padding-bottom: 20px;
-  /* margin-bottom: 20px; */
+  font-weight: 300;
+  margin-bottom: 40px;
 }
+
 .banner__inner .desc {
   font-size: 24px;
   line-height: 1.5;
   font-weight: 300;
-  margin-bottom: 40px;
+  margin-bottom: 70px;
 }
+
 .banner__inner .desc a {
   color: #fff;
-  display: inline-block;
-  background: #00000021;
-  backdrop-filter: blur(15px);
-  border-radius: 5px;
-  padding: 3px 10px;
-  border: 1px solid #ffffff29;
-  margin-top: 40px;
+  display: block;
 }
+
 .banner__inner .desc a:hover {
   text-decoration: underline;
 }
+
 .banner__inner .small {
   font-size: 16px;
-  /* text-decoration: underline; */
+  text-decoration: underline;
+}
+
+/* parallax */
+#bannerType {
+  opacity: 1;
+  transform: rotate(0deg);
+  transition: all 1s 0.1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+#bannerType.parallax {
+  animation: banner 0.6s forwards;
+}
+
+@keyframes banner {
+  0% {
+    opacity: 0.1;
+    transform: rotate(50deg);
+  }
+
+  25% {
+    opacity: 0.3;
+    transform: rotate(150deg);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: rotate(250deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 960px) {
   .banner__inner {
     padding: 100px 0;
   }
-  .banner__inner .title {
-    font-size: 30px;
-  }
-  .banner__inner .desc {
-    font-size: 16px;
-  }
 }
+
 @media (max-width: 600px) {
   .banner__inner {
     padding: 80px 0;
   }
+
   .banner__inner .title {
     font-size: 30px;
     margin-bottom: 20px;
   }
+
   .banner__inner .desc {
     font-size: 16px;
     margin-bottom: 40px;

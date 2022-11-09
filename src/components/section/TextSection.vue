@@ -1,55 +1,19 @@
 <template>
   <section id="textType" class="text__wrap" :class="attr">
-    <span>텍스트 유형01</span>
-    <h2 class="mb70">스크립트를 읽는 방법</h2>
+    <span>{{ textTitle.title }}</span>
+    <h2 class="mb70">{{ textTitle.desc }}</h2>
     <div class="text__inner" :class="layout">
-      <div class="text t1">
-        <h3 class="text__title">검색 이펙트</h3>
+      <div
+        class="text"
+        v-for="text in textText"
+        :key="text"
+        :class="text.class"
+      >
+        <h3 class="text__title">{{ text.title }}</h3>
         <p class="text__desc">
-          자바스크립트의 기본 메서드를 통해 검색 스크립트를 완성하는
-          튜토리얼입니다.
+          {{ text.desc }}
         </p>
-        <a class="text_btn" href="/">더보기</a>
-      </div>
-      <div class="text t2">
-        <h3 class="text__title">퀴즈 이펙트</h3>
-        <p class="text__desc">
-          자바스크립트의 기본 메서드를 통해 검색 스크립트를 완성하는
-          튜토리얼입니다.
-        </p>
-        <a class="text_btn" href="/">더보기</a>
-      </div>
-      <div class="text t3">
-        <h3 class="text__title">마우스 이펙트</h3>
-        <p class="text__desc">
-          자바스크립트의 기본 메서드를 통해 검색 스크립트를 완성하는
-          튜토리얼입니다.
-        </p>
-        <a class="text_btn" href="/">더보기</a>
-      </div>
-      <div class="text t4">
-        <h3 class="text__title">슬라이드 이펙트</h3>
-        <p class="text__desc">
-          자바스크립트의 기본 메서드를 통해 검색 스크립트를 완성하는
-          튜토리얼입니다.
-        </p>
-        <a class="text_btn" href="/">더보기</a>
-      </div>
-      <div class="text t5">
-        <h3 class="text__title">페럴랙스 이펙트</h3>
-        <p class="text__desc">
-          자바스크립트의 기본 메서드를 통해 검색 스크립트를 완성하는
-          튜토리얼입니다.
-        </p>
-        <a class="text_btn" href="/">더보기</a>
-      </div>
-      <div class="text t6">
-        <h3 class="text__title">게임 이펙트</h3>
-        <p class="text__desc">
-          자바스크립트의 기본 메서드를 통해 검색 스크립트를 완성하는
-          튜토리얼입니다.
-        </p>
-        <a class="text_btn" href="/">더보기</a>
+        <a :href="text.linkTo" class="text__btn">{{ text.linkText }}</a>
       </div>
     </div>
   </section>
@@ -59,6 +23,58 @@ export default {
   props: {
     attr: String,
     layout: String,
+  },
+  data() {
+    return {
+      textTitle: {
+        title: "텍스트 유형01",
+        desc: "스크립트를 읽는 방법",
+      },
+      textText: [
+        {
+          class: "t1",
+          title: "검색 이펙트",
+          desc: "자바스크립트의 기본 메서드를 통해 검색 스크립트를 완성하는 튜토리얼입니다.",
+          linkText: "더보기",
+          linkTo: "/",
+        },
+        {
+          class: "t2",
+          title: "퀴즈 이펙트",
+          desc: "자바스크립트의 기본 메서드를 통해 검색 스크립트를 완성하는 튜토리얼입니다.",
+          linkText: "더보기",
+          linkTo: "/",
+        },
+        {
+          class: "t3",
+          title: "마우스 이펙트",
+          desc: "자바스크립트의 기본 메서드를 통해 검색 스크립트를 완성하는 튜토리얼입니다.",
+          linkText: "더보기",
+          linkTo: "/",
+        },
+        {
+          class: "t4",
+          title: "슬라이드 이펙트",
+          desc: "자바스크립트의 기본 메서드를 통해 검색 스크립트를 완성하는 튜토리얼입니다.",
+          linkText: "더보기",
+          linkTo: "/",
+        },
+        {
+          class: "t5",
+          title: "페럴랙스 이펙트",
+          desc: "자바스크립트의 기본 메서드를 통해 검색 스크립트를 완성하는 튜토리얼입니다.",
+          linkText: "더보기",
+          linkTo: "/",
+        },
+        {
+          class: "t6",
+          title: "게임 이펙트",
+          desc: "자바스크립트의 기본 메서드를 통해 검색 스크립트를 완성하는 튜토리얼입니다.",
+          linkText: "더보기",
+          linkTo: "/",
+        },
+      ],
+    };
   },
 };
 </script>

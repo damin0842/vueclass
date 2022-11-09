@@ -1,84 +1,44 @@
 <template>
-  <swiper
-    :spaceBetween="30"
-    :centeredSlides="true"
-    :autoplay="{
-      delay: 2500,
-      disableOnInteraction: false,
-    }"
-    :pagination="{
-      clickable: true,
-    }"
-    :navigation="true"
-    :modules="modules"
-    class="mySwiper"
-  >
-    <swiper-slide
-      ><div className="desc">
-        <span>NAVER WORKS</span>
-        <h3>
-          네이버웍스 <br />
-          시작을 위한 첫 단계!
-        </h3>
-        <p>
-          상품 신청부터 도메인 소유권 확인/구성원 추가/ <br />
-          그룹 만들기까지 무료 셋업 지원
-        </p>
-        <div className="btn">
-          <a href="/">자세히 보기</a>
-          <a href="/" className="black"> 정보 보기 </a>
-        </div>
-      </div></swiper-slide
+  <section id="sliderType" class="slider__inner nexon">
+    <swiper
+      :spaceBetween="30"
+      :centeredSlides="true"
+      :autoplay="{
+        delay: 5000,
+        disableOnInteraction: false,
+      }"
+      :pagination="{
+        clickable: true,
+      }"
+      :navigation="true"
+      :modules="modules"
+      class="mySwiper"
     >
-    <swiper-slide
-      ><div className="desc">
-        <span>NAVER WORKS</span>
-        <h3>
-          네이버웍스 <br />
-          시작을 위한 첫 단계!
-        </h3>
-        <p>
-          상품 신청부터 도메인 소유권 확인/구성원 추가/ <br />
-          그룹 만들기까지 무료 셋업 지원
-        </p>
-        <div className="btn">
-          <a href="/">자세히 보기</a>
-          <a href="/" className="black"> 정보 보기 </a>
+      <swiper-slide v-for="st in sliderText" :key="st">
+        <div class="desc">
+          <span>{{ st.small }}</span>
+          <h3>{{ st.big }}</h3>
+          <p>
+            {{ st.desc }}
+          </p>
+          <div class="btn">
+            <a href="/">{{ st.btn1 }}</a>
+            <a href="/" class="black">{{ st.btn2 }}</a>
+          </div>
         </div>
-      </div></swiper-slide
-    >
-    <swiper-slide
-      ><div className="desc">
-        <span>NAVER WORKS</span>
-        <h3>
-          네이버웍스 <br />
-          시작을 위한 첫 단계!
-        </h3>
-        <p>
-          상품 신청부터 도메인 소유권 확인/구성원 추가/ <br />
-          그룹 만들기까지 무료 셋업 지원
-        </p>
-        <div className="btn">
-          <a href="/">자세히 보기</a>
-          <a href="/" className="black"> 정보 보기 </a>
-        </div>
-      </div></swiper-slide
-    >
-  </swiper>
+      </swiper-slide>
+    </swiper>
+  </section>
 </template>
 <script>
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
-
 // Import Swiper styles
 import "swiper/css";
-
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
-
 export default {
   components: {
     Swiper,
@@ -87,6 +47,33 @@ export default {
   setup() {
     return {
       modules: [Autoplay, Pagination, Navigation],
+    };
+  },
+  data() {
+    return {
+      sliderText: [
+        {
+          small: "NAVER WORKS",
+          big: "네이버웍스 시작을 위한 첫 단계!",
+          desc: "상품 신청부터 도메인 소유권 확인/구성원 추가/ 그룹 만들기까지 무료 셋업 지원",
+          btn1: "자세히 보기",
+          btn2: "정보 보기",
+        },
+        {
+          small: "NAVER WORKS",
+          big: "네이버웍스 시작을 위한 첫 단계!",
+          desc: "상품 신청부터 도메인 소유권 확인/구성원 추가/ 그룹 만들기까지 무료 셋업 지원",
+          btn1: "자세히 보기",
+          btn2: "정보 보기",
+        },
+        {
+          small: "NAVER WORKS",
+          big: "네이버웍스 시작을 위한 첫 단계!",
+          desc: "상품 신청부터 도메인 소유권 확인/구성원 추가/ 그룹 만들기까지 무료 셋업 지원",
+          btn1: "자세히 보기",
+          btn2: "정보 보기",
+        },
+      ],
     };
   },
 };
